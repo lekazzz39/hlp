@@ -15,7 +15,7 @@ def main(domain):
 		'AAAA',
 		'SPF',
 		]
-		
+
 	try:
 		whois_response = whois(domain)
 	except Exception as e:
@@ -23,6 +23,7 @@ def main(domain):
 	print(whois_response.text)
 
 	for a in ids:
+		print('/n')
 		print('----------------------------------------------------------------------')
 		try:
 			answer = dns_query(domain, a)
