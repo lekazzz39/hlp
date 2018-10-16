@@ -1,6 +1,6 @@
 import click
 from dns.resolver import query as dns_query
-import whois
+from whois import whois
 
 @click.command()
 @click.argument('domain')
@@ -15,8 +15,13 @@ def main(domain):
 		'AAAA',
 		'SPF',
 		]
-	whois_response = whois.whois(domain)
+		
+	try:
+		whois_response = whois(domain)
+	except Exception as e:
+		pass		
 	print(whois_response.text)
+
 	for a in ids:
 		print('----------------------------------------------------------------------')
 		try:
